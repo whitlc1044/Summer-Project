@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Testing.Models.OppurtunityModel>
+
+@{
+    ViewData["Title"] = "ViewOppurtunity";
+}
+
+<h1>ViewOppurtunity</h1>
+
+<p>
+    <a asp-action="CreateOpp">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Center)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Center)
+            </td>
+            <td>
+                @Html.ActionLink("Edit |", "EditOpp", new {ID = item.ID }) 
+                @Html.ActionLink("Delete", "DelOpp", new { ID = item.ID }, new { onclick = "return confirm ( 'Are you sure?');" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
