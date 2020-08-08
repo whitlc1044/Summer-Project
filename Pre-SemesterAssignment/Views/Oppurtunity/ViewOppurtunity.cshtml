@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Pre_SemesterAssignment.Models.OppurtunityModel>
+
+@{
+    ViewData["Title"] = "ViewOppurtunity";
+    Layout = "Volunteer_Layout";
+}
+
+<h1>ViewOppurtunity</h1>
+<form asp-action="ViewOppurtunity" method="get">
+
+
+    Search Oppurtunity: <input type="text" name="searchString" value="@ViewBag.CurrentSearch" />
+    <input type="submit" value="Search" />
+    <a asp-action="viewOppurtunity">Remove Filter</a>
+</form>
+<p>
+
+
+    <a asp-action="CreateOpp">Create New</a>
+    Filter by: <a asp-action="viewOppurtunity" asp-route-filter="60Recent">Recent (60-days)</a> <a asp-action="viewOppurtunity" asp-route-filter="Center">| Center</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Center)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Center)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit |", "EditOpp", new { ID = item.ID })
+                    @Html.ActionLink("Delete", "DelOpp", new { ID = item.ID }, new { onclick = "return confirm ( 'Are you sure?');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -13,12 +13,12 @@ namespace DataLibrary.DataAccess
 {
     public static class SqlDataAccess
     {
-       
 
-        public static string GetConnectionString(string connectionName = "OppurtunityDB")
+
+        public static string GetConnectionString(string connectionName = "SummerDB")
         {
-            
             return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+
         }
 
         public static List<T> LoadData<T>(string sql)

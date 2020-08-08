@@ -1,0 +1,161 @@
+﻿@model IEnumerable<Pre_SemesterAssignment.Models.VolunteerModel>
+
+@{
+    ViewBag.Title = "ViewVolunteer";
+    Layout = "Volunteer_Layout";
+}
+
+<h2>View Volunteers</h2>
+
+<form asp-action="ViewVolunteer" method="get">
+
+
+    Search Volunteer: <input type="text" name="searchString" value="@ViewBag.CurrentSearch" />
+    <input type="submit" value="Search" />
+    <a asp-action="viewVolunteer">Remove Filter</a>
+</form>
+
+
+<p>
+    <a asp-action="ManageVolunteers">Create New</a>
+    Filter by: <a asp-action="ViewVolunteer" asp-route-filter="Approved/Pending Approval">Approved/Pending Approval</a>
+    <a asp-action="ViewVolunteer" asp-route-filter="Approved">| Approved</a>
+    <a asp-action="ViewVolunteer" asp-route-filter="Pending Approval">| Pending Approval </a>
+    <a asp-action="ViewVolunteer" asp-route-filter="Disapproved">| Disapproved </a>
+    <a asp-action="ViewVolunteer" asp-route-filter="Inactive">| Inactive</a>
+    <a asp-action="ViewVolunteer" >| All</a>
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Center)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Skills)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Availability)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Education)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Licenses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ECName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ECPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ECEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ECAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriversLicenseOnFile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SSCardOnFile)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Center)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skills)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Availability)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Education)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Licenses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ECName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ECPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ECEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ECAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriversLicenseOnFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SSCardOnFile)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditVol", new { Vol_ID = item.Vol_ID}) 
+            
+                @Html.ActionLink("Delete", "DelVol", new { Vol_ID = item.Vol_ID }, new { onclick = "return confirm ( 'Are you sure?');" })
+            </td>
+
+        </tr>
+    }
+
+</table>

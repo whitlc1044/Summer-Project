@@ -14,7 +14,6 @@ namespace DataLibrary.Models
         public string Opp_Name { get; set; }
         public string Opp_Date { get; set; }
         public string Opp_Center { get; set; }
-
-
+        public string Opp_Desc { get; set; }
     }
 }
