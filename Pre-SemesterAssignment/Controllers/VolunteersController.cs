@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Pre_SemesterAssignment.Controllers
 {
@@ -21,24 +22,35 @@ namespace Pre_SemesterAssignment.Controllers
         {
             _logger = logger;
         }
-        public IActionResult Index()
+   
+
+     public IActionResult ViewMatch()
         {
-            return View();
+            List<Models.MatchOppVol> Match = new List<Models.MatchOppVol>();
+
+            var match = LoadMatch();
+            foreach (var row in match)
+            {
+                Match.Add(new Models.MatchOppVol
+                {
+                    FirstName = row.FirstName,
+                    LastName = row.LastName,
+                    UserName = row.UserName,
+                    Name = row.Opp_Name,
+                    Center = row.Opp_Center,
+                    Description = row.Opp_Desc,
+
+                });
+            }
+
+
+
+
+            return View(Match);
+
         }
 
-        public IActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+   
 
         public IActionResult ViewVolunteer(string searchString, string filter)
         {
@@ -47,6 +59,9 @@ namespace Pre_SemesterAssignment.Controllers
 
             var data = LoadVolunteer();
             List<Models.VolunteerModel> volunteers = new List<Models.VolunteerModel>();
+            List<Models.MatchOppVol> Match = new List<Models.MatchOppVol>();
+
+
             if (!string.IsNullOrEmpty(filter))
             {
                 switch (filter)
@@ -54,6 +69,7 @@ namespace Pre_SemesterAssignment.Controllers
                     case "Approved/Pending Approval":
                         data = AP();
                         break;
+                  
                     default:
                         data = ApprovalStatus(filter);
                         break;
@@ -95,6 +111,8 @@ namespace Pre_SemesterAssignment.Controllers
 
                 });
             }
+
+
 
             return View(volunteers);
         }

@@ -53,7 +53,7 @@ namespace Pre_SemesterAssignment.Models
         [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "Enter in a valid phone number.")]
         [DataType(DataType.PhoneNumber)]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email Address")]
@@ -79,7 +79,7 @@ namespace Pre_SemesterAssignment.Models
         [Display(Name = "Emergency Contact Phone Number")]
         [Required(ErrorMessage = "Enter in emergency contacy phone number.")]
         [DataType(DataType.PhoneNumber)]
-        public int ECPhone { get; set; }
+        public string ECPhone { get; set; }
 
         [Display(Name = "Emergency Contact Email")]
         [Required(ErrorMessage = "Enter in emergency contact email.")]

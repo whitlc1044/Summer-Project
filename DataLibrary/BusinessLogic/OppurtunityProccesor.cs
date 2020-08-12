@@ -97,6 +97,14 @@ namespace DataLibrary.BusinessLogic
 
             return SqlDataAccess.LoadData<OppurtunityModel>(sql);
         }
+        public static List<MatchOppVol> LoadMatch()
+        {
+            string sql = @"select dbo.Volunteer.FirstName, dbo.Volunteer.LastName, dbo.Volunteer.UserName,dbo.Oppurtunity.Opp_Name, dbo.Oppurtunity.Opp_Center ,dbo.Oppurtunity.Opp_Desc
+                                from dbo.Volunteer, dbo.Oppurtunity
+                                where dbo.Volunteer.Center = dbo.Oppurtunity.Opp_Center;";
+
+            return SqlDataAccess.LoadData<MatchOppVol>(sql);
+        }
         public static List<OppurtunityModel> LoadOppurtunity()
         {
             string sql = @"select Opp_ID, Opp_Name, Opp_Date, Opp_Center,Opp_Desc

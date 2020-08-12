@@ -11,8 +11,8 @@ namespace DataLibrary.BussinessLogic
     public static class VolunteerProcessor
     {
         public static int CreateVolunteer(string firstName, string lastName, string userName, string password, string center,
-            string skills, string availability, string address, int phoneNumber, string emailAddress, string education,
-            string licenses, string ecName, int ecPhone, string ecEmail, string ecAddress, string approvalStatus, bool driversLicenseOnFile, bool sSCardOnFile
+            string skills, string availability, string address, string phoneNumber, string emailAddress, string education,
+            string licenses, string ecName, string ecPhone, string ecEmail, string ecAddress, string approvalStatus, bool driversLicenseOnFile, bool sSCardOnFile
            )
         {
             VolunteerModel data = new VolunteerModel
@@ -49,8 +49,8 @@ namespace DataLibrary.BussinessLogic
         }
 
         public static int EditVolunteer(int Vol_Id, string firstName, string lastName, string userName, string password, string center,
-           string skills, string availability, string address, int phoneNumber, string emailAddress, string education,
-           string licenses, string ecName, int ecPhone, string ecEmail, string ecAddress, string approvalStatus, bool driversLicenseOnFile, bool sSCardOnFile
+           string skills, string availability, string address, string phoneNumber, string emailAddress, string education,
+           string licenses, string ecName, string ecPhone, string ecEmail, string ecAddress, string approvalStatus, bool driversLicenseOnFile, bool sSCardOnFile
            )
         {
             VolunteerModel data = new VolunteerModel
@@ -127,6 +127,14 @@ namespace DataLibrary.BussinessLogic
                             where ApprovalStatus Like 'Approved' OR ApprovalStatus Like 'Pending Approval';";
 
             return SqlDataAccess.LoadData<VolunteerModel>(sql);
+        }
+        public static List<MatchOppVol> LoadMatch()
+        {
+            string sql = @"select dbo.Volunteer.FirstName, dbo.Volunteer.LastName, dbo.Volunteer.UserName,dbo.Oppurtunity.Opp_Name, dbo.Oppurtunity.Opp_Center ,dbo.Oppurtunity.Opp_Desc
+                                from dbo.Volunteer, dbo.Oppurtunity
+                                where dbo.Volunteer.Center = dbo.Oppurtunity.Opp_Center;";
+
+            return SqlDataAccess.LoadData<MatchOppVol>(sql);
         }
 
         public static List<VolunteerModel> LoadVolunteer()

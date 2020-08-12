@@ -22,10 +22,29 @@ namespace Pre_SemesterAssignment.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult ViewMatch()
         {
-            return View();
+            List<Models.MatchOppVol> Match = new List<Models.MatchOppVol>();
+
+            var match = LoadMatch();
+            foreach (var row in match)
+            {
+                Match.Add(new Models.MatchOppVol
+                {
+                    FirstName = row.FirstName,
+                    LastName = row.LastName,
+                    UserName = row.UserName,
+                    Name = row.Opp_Name,
+                    Center = row.Opp_Center,
+                    Description = row.Opp_Desc,
+
+                });
+            }
+
+            return View(Match);
+
         }
+
         public IActionResult CreateOpp()
         {
             return View();
@@ -68,6 +87,9 @@ namespace Pre_SemesterAssignment.Controllers
                     data = CenterAsc();
                     break;
                 case "60Recent":
+                    data = RecentFilter();
+                    break;
+                case "MatchOppVol":
                     data = RecentFilter();
                     break;
                 default:
